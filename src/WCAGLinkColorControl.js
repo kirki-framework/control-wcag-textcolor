@@ -1,14 +1,14 @@
 /* global wp, jQuery, React, ReactDOM */
-import KirkiReactColorForm from './KirkiReactColorForm';
+import WCAGLinkColorForm from './WCAGLinkColorForm';
 
 /**
- * KirkiReactColorControl.
+ * WCAGLinkColorControl.
  *
  * @class
  * @augments wp.customize.Control
  * @augments wp.customize.Class
  */
-const KirkiReactColorControl = wp.customize.Control.extend({
+const WCAGLinkColorControl = wp.customize.Control.extend({
 
 	/**
 	 * Initialize.
@@ -60,7 +60,7 @@ const KirkiReactColorControl = wp.customize.Control.extend({
 		const control = this;
 		const value = control.setting.get();
 
-		const form = <KirkiReactColorForm
+		const form = <WCAGLinkColorForm
 			{ ...control.params }
 			value={ value }
 			setNotificationContainer={ control.setNotificationContainer }
@@ -114,4 +114,4 @@ const KirkiReactColorControl = wp.customize.Control.extend({
 	}
 });
 
-export default KirkiReactColorControl;
+export default WCAGLinkColorControl;

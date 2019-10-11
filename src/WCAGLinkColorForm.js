@@ -14,7 +14,7 @@ import { SwatchesPicker } from 'react-color';
 import { TwitterPicker } from 'react-color';
 import reactCSS from 'reactcss';
 
-const KirkiReactColorForm = ( props ) => {
+const WCAGLinkColorForm = ( props ) => {
 
 	const handleChangeComplete = ( color ) => {
 		if ( 1 === color.rgb.a ) {
@@ -250,4 +250,4 @@ const KirkiReactColorForm = ( props ) => {
 	}
 };
 
-export default KirkiReactColorForm;
+export default WCAGLinkColorForm;
