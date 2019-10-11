@@ -84,7 +84,7 @@ class WCAGLinkColor extends Field {
 	public function filter_control_args( $args, $wp_customize ) {
 		if ( $args['settings'] === $this->args['settings'] ) {
 			$args         = parent::filter_control_args( $args, $wp_customize );
-			$args['type'] = 'kirki-react-color';
+			$args['type'] = 'kirki-wcag-link-color';
 		}
 		return $args;
 	}
