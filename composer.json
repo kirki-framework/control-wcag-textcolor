@@ -1,5 +1,5 @@
 {
-    "name": "kirki-framework/control-react-color",
+    "name": "wplemon/control-wcag-linkcolor",
     "type": "library",
     "description": "Color control for the Kirki Customizer framework using react-color.",
     "keywords": ["wordpress","customizer","framework"],
