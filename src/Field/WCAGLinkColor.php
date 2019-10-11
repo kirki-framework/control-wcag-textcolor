@@ -8,7 +8,7 @@
  * @since     1.0
  */
 
-namespace Kirki\Field;
+namespace WPLemon\Field;
 
 use Kirki\Field;
 
@@ -17,7 +17,7 @@ use Kirki\Field;
  *
  * @since 1.0
  */
-class ReactColor extends Field {
+class WCAGLinkColor extends Field {
 
 	/**
 	 * The field type.
@@ -26,7 +26,7 @@ class ReactColor extends Field {
 	 * @since 1.0
 	 * @var string
 	 */
-	public $type = 'kirki-react-color';
+	public $type = 'kirki-wcag-link-color';
 
 	/**
 	 * The control class-name.
@@ -35,7 +35,7 @@ class ReactColor extends Field {
 	 * @since 0.1
 	 * @var string
 	 */
-	protected $control_class = '\Kirki\Control\ReactColor';
+	protected $control_class = '\WPLemon\Control\WCAGLinkColor';
 
 	/**
 	 * Whether we should register the control class for JS-templating or not.

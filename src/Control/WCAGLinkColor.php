@@ -8,7 +8,7 @@
  * @since     1.0
  */
 
-namespace Kirki\Control;
+namespace WPLemon\Control;
 
 use Kirki\Control\Base;
 use Kirki\URL;
@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @since 1.0
  */
-class ReactColor extends Base {
+class WCAGLinkColor extends Base {
 
 	/**
 	 * The control type.
@@ -32,7 +32,7 @@ class ReactColor extends Base {
 	 * @since 1.0
 	 * @var string
 	 */
-	public $type = 'kirki-react-color';
+	public $type = 'kirki-wcag-link-color';
 
 	/**
 	 * The control version.
@@ -55,10 +55,10 @@ class ReactColor extends Base {
 		parent::enqueue();
 
 		// Enqueue the script.
-		wp_enqueue_script( 'kirki-control-react-color', URL::get_from_path( dirname( dirname( __DIR__ ) ) . '/dist/main.js' ), [ 'customize-controls', 'wp-element', 'jquery', 'customize-base', 'kirki-dynamic-control' ], self::$control_ver, false );
+		wp_enqueue_script( 'kirki-control-react-color', URL::get_from_path( dirname( dirname( __DIR__ ) ) . '/dist/main.js' ), [ 'customize-controls', 'wp-element', 'jquery', 'customize-base', 'kirki-dynamic-control' ], time(), false );
 
 		// Enqueue the style.
-		wp_enqueue_style( 'kirki-control-react-color-style', URL::get_from_path( dirname( __DIR__ ) . '/style.css' ), [], self::$control_ver );
+		wp_enqueue_style( 'kirki-control-react-color-style', URL::get_from_path( dirname( __DIR__ ) . '/style.css' ), [], time() );
 	}
 
 	/**
