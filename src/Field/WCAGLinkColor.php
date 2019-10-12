@@ -2,9 +2,9 @@
 /**
  * Override field methods
  *
- * @package   kirki-framework/react-color
+ * @package   kirki-wcag-link-color
  * @copyright Copyright (c) 2019, Ari Stathopoulos (@aristath)
- * @license   https://opensource.org/licenses/MIT
+ * @license   GPL2.0+
  * @since     1.0
  */
 

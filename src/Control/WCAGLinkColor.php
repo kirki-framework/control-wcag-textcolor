@@ -1,10 +1,10 @@
 <?php
 /**
- * Customizer Control: kirki-react-color.
+ * Customizer Control: kirki-wcag-link-color.
  *
- * @package   kirki-framework/control-react-color
+ * @package   kirki-wcag-link-color
  * @copyright Copyright (c) 2019, Ari Stathopoulos (@aristath)
- * @license   https://opensource.org/licenses/MIT
+ * @license   GPL2.0+
  * @since     1.0
  */
 
@@ -42,7 +42,7 @@ class WCAGLinkColor extends Base {
 	 * @since 1.0
 	 * @var string
 	 */
-	public static $control_ver = '1.0';
+	public static $control_ver = '2.0';
 
 	/**
 	 * Enqueue control related scripts/styles.
@@ -55,10 +55,10 @@ class WCAGLinkColor extends Base {
 		parent::enqueue();
 
 		// Enqueue the script.
-		wp_enqueue_script( 'kirki-control-react-color', URL::get_from_path( dirname( dirname( __DIR__ ) ) . '/dist/main.js' ), [ 'customize-controls', 'wp-element', 'jquery', 'customize-base', 'kirki-dynamic-control', 'wp-color-picker' ], time(), false );
+		wp_enqueue_script( 'kirki-control-react-color', URL::get_from_path( dirname( dirname( __DIR__ ) ) . '/dist/main.js' ), [ 'customize-controls', 'wp-element', 'jquery', 'customize-base', 'kirki-dynamic-control', 'wp-color-picker' ], self::$control_ver, false );
 
 		// Enqueue the style.
-		wp_enqueue_style( 'kirki-control-react-color-style', URL::get_from_path( dirname( __DIR__ ) . '/style.css' ), [], time() );
+		wp_enqueue_style( 'kirki-control-react-color-style', URL::get_from_path( dirname( __DIR__ ) . '/style.css' ), [], self::$control_ver );
 	}
 
 	/**
