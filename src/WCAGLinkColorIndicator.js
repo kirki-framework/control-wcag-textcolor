@@ -5,12 +5,12 @@ const WCAGLinkColorIndicator = ( props ) => {
 	const getRatingBackgroundColor = () => {
 		const rating = getRating();
 		if ( 'AAA' === rating ) {
-			return '#008a20';
+			return '#46B450';
 		}
 		if ( 'AA' === rating ) {
-			return '#187aa2';
+			return '#00a0d2';
 		}
-		return '#d63638';
+		return '#dc3232';
 	};
 
 	// Get WCAG contrast with background.
@@ -50,7 +50,8 @@ const WCAGLinkColorIndicator = ( props ) => {
 				height: '30px',
 				'border-radius': '50%',
 				display: 'block',
-				'background-color': props.value
+				'background-color': props.value,
+				'box-shadow': '#000 2px 2px 5px -3px inset'
 			},
 
 			selectedColorIndicatorWrapper: {
