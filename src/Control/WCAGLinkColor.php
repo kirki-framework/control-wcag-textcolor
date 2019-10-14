@@ -5,12 +5,10 @@
  * @package   kirki-wcag-link-color
  * @copyright Copyright (c) 2019, Ari Stathopoulos (@aristath)
  * @license   GPL2.0+
- * @since     1.0
+ * @since     2.0
  */
 
 namespace WPLemon\Control;
-
-use Kirki\Control\Base;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -20,15 +18,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * React-color control.
  *
- * @since 1.0
+ * @since 2.0
  */
-class WCAGLinkColor extends Base {
+class WCAGLinkColor extends \WP_Customize_Control {
 
 	/**
 	 * The control type.
 	 *
 	 * @access public
-	 * @since 1.0
+	 * @since 2.0
 	 * @var string
 	 */
 	public $type = 'kirki-wcag-link-color';
@@ -38,16 +36,80 @@ class WCAGLinkColor extends Base {
 	 *
 	 * @static
 	 * @access public
-	 * @since 1.0
+	 * @since 2.0
 	 * @var string
 	 */
 	public static $control_ver = '2.0';
+
+	// Start compatibility with Kirki v3.0 API.
+	/**
+	 * Used to automatically generate all CSS output.
+	 *
+	 * Whitelisting property for use in Kirki modules.
+	 *
+	 * @access public
+	 * @since 2.0
+	 * @var array
+	 */
+	public $output = [];
+
+	/**
+	 * Data type
+	 *
+	 * @access public
+	 * @since 2.0
+	 * @var string
+	 */
+	public $option_type = 'theme_mod';
+
+	/**
+	 * Option name (if using options).
+	 *
+	 * Whitelisting property for use in Kirki modules.
+	 *
+	 * @access public
+	 * @since 2.0
+	 * @var string
+	 */
+	public $option_name = false;
+
+	/**
+	 * Whitelisting the "css_vars" argument for use in Kirki modules.
+	 *
+	 * @access public
+	 * @since 2.0
+	 * @var string
+	 */
+	public $css_vars = '';
+
+	/**
+	 * Parent setting.
+	 *
+	 * Used for composite controls to denote the setting that should be saved.
+	 *
+	 * @access public
+	 * @since 2.0
+	 * @var string
+	 */
+	public $parent_setting;
+
+	/**
+	 * Wrapper attributes.
+	 *
+	 * Used for composite controls.
+	 *
+	 * @access public
+	 * @since 2.0
+	 * @var string
+	 */
+	public $wrapper_atts;
+	// End compatibility with Kirki v3.0 API.
 
 	/**
 	 * Enqueue control related scripts/styles.
 	 *
 	 * @access public
-	 * @since 1.0
+	 * @since 2.0
 	 * @return void
 	 */
 	public function enqueue() {
@@ -85,7 +147,7 @@ class WCAGLinkColor extends Base {
 	 * Refresh the parameters passed to the JavaScript via JSON.
 	 *
 	 * @access public
-	 * @since 1.0
+	 * @since 2.0
 	 * @see WP_Customize_Control::to_json()
 	 * @return void
 	 */
@@ -104,6 +166,20 @@ class WCAGLinkColor extends Base {
 			'contrastBg'  => esc_html__( 'Contrast with background', 'kirki-pro' ),
 			'contrastSt'  => esc_html__( 'Contrast with surrounding text', 'kirki-pro' ),
 		] );
+
+		// Start compatibility with Kirki v3.0 API.
+		$this->json['default'] = ( isset( $this->default ) ) ? $this->default : $this->setting->default;
+		$this->json['output'] = $this->output;
+		$this->json['value'] = $this->value();
+		$this->json['choices'] = $this->choices;
+		$this->json['link'] = $this->get_link();
+		$this->json['id'] = $this->id;
+		$this->json['kirkiOptionType'] = $this->option_type;
+		$this->json['kirkiOptionName'] = $this->option_name;
+		$this->json['css-var'] = $this->css_vars;
+		$this->json['parent_setting'] = $this->parent_setting;
+		$this->json['wrapper_atts'] = $this->wrapper_atts;
+		// End compatibility with Kirki 3.0 API.
 	}
 
 	/**
@@ -115,7 +191,7 @@ class WCAGLinkColor extends Base {
 	 * @see WP_Customize_Control::print_template()
 	 *
 	 * @access protected
-	 * @since 1.0
+	 * @since 2.0
 	 * @return void
 	 */
 	protected function content_template() {}
