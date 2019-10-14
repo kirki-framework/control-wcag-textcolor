@@ -1,8 +1,8 @@
 <?php
 /**
- * Customizer Control: kirki-wcag-link-color.
+ * Customizer Control: kirki-wcag-lc.
  *
- * @package   kirki-wcag-link-color
+ * @package   kirki-wcag-lc
  * @copyright Copyright (c) 2019, Ari Stathopoulos (@aristath)
  * @license   GPL2.0+
  * @since     2.0
@@ -29,7 +29,7 @@ class WCAGLinkColor extends \WP_Customize_Control {
 	 * @since 2.0
 	 * @var string
 	 */
-	public $type = 'kirki-wcag-link-color';
+	public $type = 'kirki-wcag-lc';
 
 	/**
 	 * The control version.
@@ -121,7 +121,7 @@ class WCAGLinkColor extends \WP_Customize_Control {
 			$folder_url = \str_replace(
 				\wp_normalize_path( \untrailingslashit( WP_CONTENT_DIR ) ),
 				\untrailingslashit( \content_url() ),
-				dirname( __DIR__ )
+				dirname( dirname( __DIR__ ) )
 			);
 		}
 
@@ -129,7 +129,7 @@ class WCAGLinkColor extends \WP_Customize_Control {
 		wp_enqueue_script(
 			'wplemon-control-auto-links-colorpicker',
 			$folder_url . '/dist/main.js',
-			[ 'customize-controls', 'wp-element', 'jquery', 'customize-base', 'kirki-dynamic-control', 'wp-color-picker' ],
+			[ 'customize-controls', 'wp-element', 'jquery', 'customize-base', 'wp-color-picker' ],
 			self::$control_ver,
 			false
 		);
