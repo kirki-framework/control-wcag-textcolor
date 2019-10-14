@@ -38,9 +38,9 @@ const WCAGLinkColorFormTabs = ( props ) => {
 	return (
 		<Tabs forceRenderTabPanel defaultIndex={ props.control.getAvailableModes().indexOf( props.activeMode ) } onSelect={ ( index ) => switchTab( index ) }>
 			<TabList>
-				{ props.control.isModeAvailable( 'auto' ) ? ( <Tab>Auto</Tab> ) : '' }
-				{ props.control.isModeAvailable( 'recommended' ) ? ( <Tab>Recommended</Tab> ) : '' }
-				{ props.control.isModeAvailable( 'custom' ) ? ( <Tab>Custom</Tab> ) : '' }
+				{ props.control.isModeAvailable( 'auto' ) ? ( <Tab>{ props.i18n.auto }</Tab> ) : '' }
+				{ props.control.isModeAvailable( 'recommended' ) ? ( <Tab>{ props.i18n.recommended }</Tab> ) : '' }
+				{ props.control.isModeAvailable( 'custom' ) ? ( <Tab>{ props.i18n.custom }</Tab> ) : '' }
 			</TabList>
 			{ props.control.isModeAvailable( 'auto' ) ? (
 				<TabPanel>

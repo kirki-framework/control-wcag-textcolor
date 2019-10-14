@@ -82,6 +82,31 @@ class WCAGLinkColor extends Base {
 	}
 
 	/**
+	 * Refresh the parameters passed to the JavaScript via JSON.
+	 *
+	 * @access public
+	 * @since 1.0
+	 * @see WP_Customize_Control::to_json()
+	 * @return void
+	 */
+	public function to_json() {
+
+		// Get the basics from the parent class.
+		parent::to_json();
+
+		$strings = ( isset( $this->choices['18n'] ) ) ? $this->choices['18n'] : [];
+
+		$this->json['i18n'] = wp_parse_args( $strings,[
+			'auto'        => esc_html__( 'Auto', 'kirki-pro' ),
+			'recommended' => esc_html__( 'Recommended', 'kirki-pro' ),
+			'custom'      => esc_html__( 'Custom', 'kirki-pro' ),
+			'a11yRating'  => esc_html__( 'WCAG Rating', 'kirki-pro' ),
+			'contrastBg'  => esc_html__( 'Contrast with background', 'kirki-pro' ),
+			'contrastSt'  => esc_html__( 'Contrast with surrounding text', 'kirki-pro' ),
+		] );
+	}
+
+	/**
 	 * An Underscore (JS) template for this control's content (but not its container).
 	 *
 	 * Class variables for this control class are available in the `data` JS object;
