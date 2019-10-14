@@ -11,7 +11,6 @@
 namespace WPLemon\Control;
 
 use Kirki\Control\Base;
-use Kirki\URL;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -54,11 +53,32 @@ class WCAGLinkColor extends Base {
 	public function enqueue() {
 		parent::enqueue();
 
+		if ( class_exists( '\Kirki\URL' ) ) {
+			$folder_url = \Kirki\URL::get_from_path( dirname( dirname( __DIR__ ) ) );
+		} else {
+			$folder_url = \str_replace(
+				\wp_normalize_path( \untrailingslashit( WP_CONTENT_DIR ) ),
+				\untrailingslashit( \content_url() ),
+				dirname( __DIR__ )
+			);
+		}
+
 		// Enqueue the script.
-		wp_enqueue_script( 'wplemon-control-auto-links-colorpicker', URL::get_from_path( dirname( dirname( __DIR__ ) ) . '/dist/main.js' ), [ 'customize-controls', 'wp-element', 'jquery', 'customize-base', 'kirki-dynamic-control', 'wp-color-picker' ], self::$control_ver, false );
+		wp_enqueue_script(
+			'wplemon-control-auto-links-colorpicker',
+			$folder_url . '/dist/main.js',
+			[ 'customize-controls', 'wp-element', 'jquery', 'customize-base', 'kirki-dynamic-control', 'wp-color-picker' ],
+			self::$control_ver,
+			false
+		);
 
 		// Enqueue the style.
-		wp_enqueue_style( 'wplemon-control-auto-links-colorpicker-style', URL::get_from_path( dirname( __DIR__ ) . '/style.css' ), [], self::$control_ver );
+		wp_enqueue_style(
+			'wplemon-control-auto-links-colorpicker-style',
+			$folder_url . '/src/style.css',
+			[],
+			self::$control_ver
+		);
 	}
 
 	/**
