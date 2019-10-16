@@ -2,16 +2,6 @@
 import reactCSS from 'reactcss';
 
 const WCAGLinkColorIndicator = ( props ) => {
-	const getRatingBackgroundColor = () => {
-		const rating = getRating();
-		if ( 'AAA' === rating ) {
-			return '#46B450';
-		}
-		if ( 'AA' === rating ) {
-			return '#00a0d2';
-		}
-		return '#dc3232';
-	};
 
 	// Get WCAG contrast with background.
 	const getContrastBackground = () => {
@@ -25,14 +15,32 @@ const WCAGLinkColorIndicator = ( props ) => {
 
 	// Get rating.
 	const getRating = () => {
-		if ( 7 <= getContrastBackground() && 3 <= getContrastSurroundingText() ) {
-			return 'AAA';
-		}
+		const underlined = props.control.params.choices.linksUnderlined;
+		const contrastBg = getContrastBackground();
+		const contrastSt = getContrastSurroundingText();
 
-		if ( 4.5 <= getContrastBackground() ) {
+		if ( 7 <= contrastBg && ( underlined || 3 <= contrastSt ) ) {
+			return 'AAA';
+		} else if ( 4.5 <= contrastBg && ( underlined || 3 <= contrastSt ) ) {
 			return 'AA';
+		} else if ( 3 <= contrastBg && ( underlined || 3 <= contrastSt ) ) {
+			return 'A';
 		}
-		return ' - ';
+		return '-';
+	};
+
+	const getRatingBackgroundColor = () => {
+		const rating = getRating();
+		switch ( rating ) {
+			case 'AAA':
+				return '#46B450';
+			case 'AA':
+				return '#00a0d2';
+			case 'A':
+				return '#ffb900';
+			default:
+				return '#dc3232';
+		}
 	};
 
 	// Styles.
