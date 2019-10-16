@@ -1,9 +1,9 @@
 /* globals React */
 /* eslint jsx-a11y/label-has-for: off */
 import { ChromePicker } from 'react-color';
-import WCAGLinkColorIndicator from './WCAGLinkColorIndicator';
+import WCAGTextColorIndicator from './WCAGTextColorIndicator';
 
-const WCAGLinkColorFormCustom = ( props ) => {
+const WCAGTextColorFormCustom = ( props ) => {
 	// Handle changes to the recommended picker.
 	const handleChangeComplete = ( color ) => {
 		wp.customize( props.customizerSetting.id ).set( color.hex );
@@ -11,7 +11,7 @@ const WCAGLinkColorFormCustom = ( props ) => {
 
 	return (
 		<div>
-			<WCAGLinkColorIndicator { ...props } />
+			<WCAGTextColorIndicator { ...props } />
 			<ChromePicker
 				width="300"
 				{ ...props.choices }
@@ -23,4 +23,4 @@ const WCAGLinkColorFormCustom = ( props ) => {
 	);
 };
 
-export default WCAGLinkColorFormCustom;
+export default WCAGTextColorFormCustom;

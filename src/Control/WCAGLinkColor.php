@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @since 2.0
  */
-class WCAGLinkColor extends \WP_Customize_Control {
+class WCAGTextColor extends \WP_Customize_Control {
 
 	/**
 	 * The control type.

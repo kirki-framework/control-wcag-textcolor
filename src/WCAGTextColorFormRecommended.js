@@ -2,9 +2,9 @@
 /* eslint jsx-a11y/label-has-for: off */
 import { HuePicker, CompactPicker } from 'react-color';
 import reactCSS from 'reactcss';
-import WCAGLinkColorIndicator from './WCAGLinkColorIndicator';
+import WCAGTextColorIndicator from './WCAGTextColorIndicator';
 
-const WCAGLinkColorFormRecommended = ( props ) => {
+const WCAGTextColorFormRecommended = ( props ) => {
 	// Handle changes to the hue picker.
 	const handleChangeCompleteHuePicker = ( color ) => {
 		const val = props.control.getAutoColor( parseInt( color.hsl.h, 10 ) );
@@ -42,7 +42,7 @@ const WCAGLinkColorFormRecommended = ( props ) => {
 					onChangeComplete={ handleChangeCompleteHuePicker }
 				/>
 			</div>
-			<WCAGLinkColorIndicator { ...props } />
+			<WCAGTextColorIndicator { ...props } />
 			<div style={ styles.pickerWrapper }>
 				<CompactPicker
 					width="300"
@@ -56,4 +56,4 @@ const WCAGLinkColorFormRecommended = ( props ) => {
 	);
 };
 
-export default WCAGLinkColorFormRecommended;
+export default WCAGTextColorFormRecommended;

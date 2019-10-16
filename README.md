@@ -1,7 +1,7 @@
 Example:
 
 ```php
-new \WPLemon\Field\WCAGLinkColor( [
+new \WPLemon\Field\WCAGTextColor( [
 	'settings'    => 'my_setting',
 	'label'       => esc_html__( 'My Color Control', 'textdomain' ),
 	'description' => esc_html__( 'A description here.', 'textdomain' ),

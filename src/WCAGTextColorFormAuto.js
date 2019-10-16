@@ -2,9 +2,9 @@
 /* eslint jsx-a11y/label-has-for: off */
 import { HuePicker } from 'react-color';
 import reactCSS from 'reactcss';
-import WCAGLinkColorIndicator from './WCAGLinkColorIndicator';
+import WCAGTextColorIndicator from './WCAGTextColorIndicator';
 
-const WCAGLinkColorFormAuto = ( props ) => {
+const WCAGTextColorFormAuto = ( props ) => {
 	// Handle changes to the hue picker.
 	const handleChangeComplete = ( color ) => {
 		const val = props.control.getAutoColor( parseInt( color.hsl.h, 10 ) );
@@ -31,9 +31,9 @@ const WCAGLinkColorFormAuto = ( props ) => {
 					onChangeComplete={ handleChangeComplete }
 				/>
 			</div>
-			<WCAGLinkColorIndicator { ...props } />
+			<WCAGTextColorIndicator { ...props } />
 		</div>
 	);
 };
 
-export default WCAGLinkColorFormAuto;
+export default WCAGTextColorFormAuto;

@@ -2,11 +2,11 @@
 /* eslint jsx-a11y/label-has-for: off */
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
-import WCAGLinkColorFormAuto from './WCAGLinkColorFormAuto';
-import WCAGLinkColorFormRecommended from './WCAGLinkColorFormRecommended';
-import WCAGLinkColorFormCustom from './WCAGLinkColorFormCustom';
+import WCAGTextColorFormAuto from './WCAGTextColorFormAuto';
+import WCAGTextColorFormRecommended from './WCAGTextColorFormRecommended';
+import WCAGTextColorFormCustom from './WCAGTextColorFormCustom';
 
-const WCAGLinkColorFormTabs = ( props ) => {
+const WCAGTextColorFormTabs = ( props ) => {
 	const switchTab = ( id ) => {
 		props.control.setMode( props.control.getAvailableModes()[ id ] );
 	};
@@ -16,21 +16,21 @@ const WCAGLinkColorFormTabs = ( props ) => {
 		// Auto.
 		if ( props.control.isModeAvailable( 'auto' ) ) {
 			return (
-				<WCAGLinkColorFormAuto { ...props } />
+				<WCAGTextColorFormAuto { ...props } />
 			);
 		}
 
 		// Recommended.
 		if ( props.control.isModeAvailable( 'recommended' ) ) {
 			return (
-				<WCAGLinkColorFormRecommended { ...props } />
+				<WCAGTextColorFormRecommended { ...props } />
 			);
 		}
 
 		// Custom.
 		if ( props.control.isModeAvailable( 'custom' ) ) {
 			return (
-				<WCAGLinkColorFormCustom { ...props } />
+				<WCAGTextColorFormCustom { ...props } />
 			);
 		}
 	}
@@ -44,21 +44,21 @@ const WCAGLinkColorFormTabs = ( props ) => {
 			</TabList>
 			{ props.control.isModeAvailable( 'auto' ) ? (
 				<TabPanel>
-					{ 'auto' === props.activeMode ? <WCAGLinkColorFormAuto { ...props } /> : '' }
+					{ 'auto' === props.activeMode ? <WCAGTextColorFormAuto { ...props } /> : '' }
 				</TabPanel>
 			) : '' }
 			{ props.control.isModeAvailable( 'recommended' ) ? (
 				<TabPanel>
-					{ 'recommended' === props.activeMode ? <WCAGLinkColorFormRecommended { ...props } /> : '' }
+					{ 'recommended' === props.activeMode ? <WCAGTextColorFormRecommended { ...props } /> : '' }
 				</TabPanel>
 			) : '' }
 			{ props.control.isModeAvailable( 'custom' ) ? (
 				<TabPanel>
-					{ 'custom' === props.activeMode ? <WCAGLinkColorFormCustom { ...props } /> : '' }
+					{ 'custom' === props.activeMode ? <WCAGTextColorFormCustom { ...props } /> : '' }
 				</TabPanel>
 			) : '' }
 		</Tabs>
 	);
 };
 
-export default WCAGLinkColorFormTabs;
+export default WCAGTextColorFormTabs;

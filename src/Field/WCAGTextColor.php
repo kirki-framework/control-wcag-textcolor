@@ -17,7 +17,7 @@ use Kirki\Field;
  *
  * @since 1.0
  */
-class WCAGLinkColor extends Field {
+class WCAGTextColor extends Field {
 
 	/**
 	 * The field type.
@@ -35,7 +35,7 @@ class WCAGLinkColor extends Field {
 	 * @since 0.1
 	 * @var string
 	 */
-	protected $control_class = '\WPLemon\Control\WCAGLinkColor';
+	protected $control_class = '\WPLemon\Control\WCAGTextColor';
 
 	/**
 	 * Whether we should register the control class for JS-templating or not.

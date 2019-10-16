@@ -1,4 +1,4 @@
-import WCAGLinkColorControl from './WCAGLinkColorControl';
+import WCAGTextColorControl from './WCAGTextColorControl';
 
 // Register control type with Customizer.
-wp.customize.controlConstructor[ 'kirki-wcag-lc' ] = WCAGLinkColorControl;
+wp.customize.controlConstructor[ 'kirki-wcag-tc' ] = WCAGTextColorControl;

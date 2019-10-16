@@ -1,14 +1,14 @@
 /* global jQuery, React, ReactDOM, Color */
-import WCAGLinkColorForm from './WCAGLinkColorForm';
+import WCAGTextColorForm from './WCAGTextColorForm';
 
 /**
- * WCAGLinkColorControl.
+ * WCAGTextColorControl.
  *
  * @class
  * @augments wp.customize.Control
  * @augments wp.customize.Class
  */
-const WCAGLinkColorControl = wp.customize.Control.extend( {
+const WCAGTextColorControl = wp.customize.Control.extend( {
 
 	/**
 	 * Initialize.
@@ -61,7 +61,7 @@ const WCAGLinkColorControl = wp.customize.Control.extend( {
 		const value = control.setting.get();
 
 		ReactDOM.render(
-			<WCAGLinkColorForm
+			<WCAGTextColorForm
 				{ ...control.params }
 				value={ value }
 				setNotificationContainer={ control.setNotificationContainer }
@@ -622,4 +622,4 @@ const WCAGLinkColorControl = wp.customize.Control.extend( {
 	}
 } );
 
-export default WCAGLinkColorControl;
+export default WCAGTextColorControl;

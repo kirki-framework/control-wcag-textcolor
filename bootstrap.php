@@ -31,8 +31,8 @@ add_filter(
 	 * @return array
 	 */
     function( $controls ) {
-        require_once __DIR__ . '/src/Control/WCAGLinkColor.php';
-		$controls['kirki-wcag-lc'] = '\WPLemon\Control\WCAGLinkColor';
+        require_once __DIR__ . '/src/Control/WCAGTextColor.php';
+		$controls['kirki-wcag-tc'] = '\WPLemon\Control\WCAGTextColor';
 		return $controls;
     }
 );
@@ -49,11 +49,11 @@ add_action(
 	 * @return void
 	 */
 	function( $wp_customize ) {
-        require_once __DIR__ . '/src/Control/WCAGLinkColor.php';
-        $wp_customize->register_control_type( '\WPLemon\Control\WCAGLinkColor' );
+        require_once __DIR__ . '/src/Control/WCAGTextColor.php';
+        $wp_customize->register_control_type( '\WPLemon\Control\WCAGTextColor' );
 
         // Add class aliases for backwards compatibility.
-        class_alias( '\WPLemon\Control\WCAGLinkColor', 'Kirki_WCAG_Link_Color' );
+        class_alias( '\WPLemon\Control\WCAGTextColor', 'Kirki_WCAG_Text_Color' );
     },
     0
 );
@@ -70,11 +70,11 @@ spl_autoload_register(
      * @param string $class The class-name.
      */
 	function( $class ) {
-        if ( 'WPLemon\Field\WCAGLinkColor' === $class || '\WPLemon\Field\WCAGLinkColor' === $class ) {
-            require_once __DIR__ . '/src/Field/WCAGLinkColor.php';
+        if ( 'WPLemon\Field\WCAGTextColor' === $class || '\WPLemon\Field\WCAGTextColor' === $class ) {
+            require_once __DIR__ . '/src/Field/WCAGTextColor.php';
         }
-        if ( 'WPLemon\Control\WCAGLinkColor' === $class || '\WPLemon\Control\WCAGLinkColor' === $class ) {
-            require_once __DIR__ . '/src/Control/WCAGLinkColor.php';
+        if ( 'WPLemon\Control\WCAGTextColor' === $class || '\WPLemon\Control\WCAGTextColor' === $class ) {
+            require_once __DIR__ . '/src/Control/WCAGTextColor.php';
         }
 	}, false, true
 );

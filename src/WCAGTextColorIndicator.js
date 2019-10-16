@@ -1,7 +1,7 @@
 /* globals React, Color */
 import reactCSS from 'reactcss';
 
-const WCAGLinkColorIndicator = ( props ) => {
+const WCAGTextColorIndicator = ( props ) => {
 
 	// Get WCAG contrast with background.
 	const getContrastBackground = () => {
@@ -121,4 +121,4 @@ const WCAGLinkColorIndicator = ( props ) => {
 	);
 };
 
-export default WCAGLinkColorIndicator;
+export default WCAGTextColorIndicator;

@@ -1,9 +1,9 @@
 /* globals React */
 /* eslint jsx-a11y/label-has-for: off */
 import reactCSS from 'reactcss';
-import WCAGLinkColorFormTabs from './WCAGLinkColorFormTabs';
+import WCAGTextColorFormTabs from './WCAGTextColorFormTabs';
 
-const WCAGLinkColorForm = ( props ) => {
+const WCAGTextLinkColorForm = ( props ) => {
 	// Styles.
 	const styles = reactCSS( {
 		default: {
@@ -21,10 +21,10 @@ const WCAGLinkColorForm = ( props ) => {
 			</div>
 
 			<div style={ styles.tabsWrapper }>
-				<WCAGLinkColorFormTabs { ...props } />
+				<WCAGTextColorFormTabs { ...props } />
 			</div>
 		</div>
 	);
 };
 
-export default WCAGLinkColorForm;
+export default WCAGTextLinkColorForm;
