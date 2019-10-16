@@ -2,16 +2,6 @@
 import reactCSS from 'reactcss';
 
 const WCAGLinkColorIndicator = ( props ) => {
-	const getRatingBackgroundColor = () => {
-		const rating = getRating();
-		if ( 'AAA' === rating ) {
-			return '#46B450';
-		}
-		if ( 'AA' === rating ) {
-			return '#00a0d2';
-		}
-		return '#dc3232';
-	};
 
 	// Get WCAG contrast with background.
 	const getContrastBackground = () => {
@@ -25,14 +15,31 @@ const WCAGLinkColorIndicator = ( props ) => {
 
 	// Get rating.
 	const getRating = () => {
-		if ( 7 <= getContrastBackground() && 3 <= getContrastSurroundingText() ) {
-			return 'AAA';
+		const contrastBG = getContrastBackground();
+		const contrastST = getContrastSurroundingText();
+		let rating = {
+			colorOnly: '-',
+			underlined: '-',
+		};
+
+		// Check if contrast with background is more than 7:1.
+		if ( 7 <= contrastBG ) {
+			rating.underlined  = 'AAA';
+
+			// Check if contrast with surrounding text is above 3:1
+			if ( 3 <= contrastST ) {
+				rating.colorOnly = 'AAA';
+			}
+		} else if ( 4.5 <= contrastBG ) {
+			rating.underlined = 'AA';
+
+			// Check if contrast with surrounding text is above 3:1
+			if ( 3 <= contrastST ) {
+				rating.colorOnly = 'AAA';
+			}
 		}
 
-		if ( 4.5 <= getContrastBackground() ) {
-			return 'AA';
-		}
-		return ' - ';
+		return rating;
 	};
 
 	// Styles.
@@ -89,6 +96,33 @@ const WCAGLinkColorIndicator = ( props ) => {
 		}
 	} );
 
+	let ratingHTML = () => {
+		const rating = getRating();
+		const ratingColor = {
+			'AAA': '#46B450',
+			'AA': '#00a0d2',
+			'-': '#dc3232'
+		};
+		let style = {
+			underlined: styles.ratingIndicator,
+			colorOnly: styles.ratingIndicator
+		};
+		style.underlined['background-color'] = ratingColor[ rating.underlined ];
+		style.colorOnly['background-color'] = ratingColor[ rating.colorOnly ];
+		if ( rating.underlined === rating.colorOnly ) {
+			return (
+				<span style={ styles.underlined }>{ getRating().underlined }</span>
+			);
+		}
+
+		return (
+			<span>
+				<span style={ styles.underlined }>{ getRating().underlined }</span>
+				<span style={ styles.colorOnly }>{ getRating().colorOnly }</span>
+			</span>
+		)
+	};
+console.log( getRating() );
 	return (
 		<div style={ styles.selectedColorWrapper }>
 			<div style={ styles.selectedColorIndicatorWrapper }>
@@ -98,7 +132,7 @@ const WCAGLinkColorIndicator = ( props ) => {
 			<table style={ styles.table }>
 				<tr>
 					<td style={ styles.td }>{ props.i18n.a11yRating }</td>
-					<td style={ styles.td }><span style={ styles.ratingIndicator }>{ getRating() }</span></td>
+					<td style={ styles.td }>{ ratingHTML }</td>
 				</tr>
 				<tr>
 					<td style={ styles.td }>{ props.i18n.contrastBg }</td>

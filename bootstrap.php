@@ -19,6 +19,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+error_log( 'here' );
 
 add_filter(
     'kirki_control_types',
