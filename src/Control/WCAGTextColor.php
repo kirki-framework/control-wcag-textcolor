@@ -1,8 +1,8 @@
 <?php
 /**
- * Customizer Control: kirki-wcag-lc.
+ * Customizer Control: kirki-wcag-tc.
  *
- * @package   kirki-wcag-lc
+ * @package   kirki-wcag-ltcc
  * @copyright Copyright (c) 2019, Ari Stathopoulos (@aristath)
  * @license   GPL2.0+
  * @since     2.0
@@ -29,7 +29,7 @@ class WCAGTextColor extends \WP_Customize_Control {
 	 * @since 2.0
 	 * @var string
 	 */
-	public $type = 'kirki-wcag-lc';
+	public $type = 'kirki-wcag-tc';
 
 	/**
 	 * The control version.
@@ -127,19 +127,19 @@ class WCAGTextColor extends \WP_Customize_Control {
 
 		// Enqueue the script.
 		wp_enqueue_script(
-			'wplemon-control-auto-links-colorpicker',
+			'wplemon-control-auto-text-colorpicker',
 			$folder_url . '/dist/main.js',
 			[ 'customize-controls', 'wp-element', 'jquery', 'customize-base', 'wp-color-picker' ],
-			self::$control_ver,
+			time(),
 			false
 		);
 
 		// Enqueue the style.
 		wp_enqueue_style(
-			'wplemon-control-auto-links-colorpicker-style',
+			'wplemon-control-auto-text-colorpicker-style',
 			$folder_url . '/src/style.css',
 			[],
-			self::$control_ver
+			time()
 		);
 	}
 

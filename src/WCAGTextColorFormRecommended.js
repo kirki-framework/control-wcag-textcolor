@@ -7,7 +7,7 @@ import WCAGTextColorIndicator from './WCAGTextColorIndicator';
 const WCAGTextColorFormRecommended = ( props ) => {
 	// Handle changes to the hue picker.
 	const handleChangeCompleteHuePicker = ( color ) => {
-		const val = props.control.getAutoColor( parseInt( color.hsl.h, 10 ) );
+		const val = props.control.getAutoColor();
 		wp.customize( props.customizerSetting.id ).set( val );
 	};
 
@@ -19,11 +19,6 @@ const WCAGTextColorFormRecommended = ( props ) => {
 	// Styles.
 	const styles = reactCSS( {
 		default: {
-			hueWrapper: {
-				position: 'relative',
-				padding: '12px 0'
-			},
-
 			pickerWrapper: {
 				'max-height': '200px',
 				'overflow-x': 'hidden',
@@ -34,14 +29,6 @@ const WCAGTextColorFormRecommended = ( props ) => {
 
 	return (
 		<div>
-			<div style={ styles.hueWrapper }>
-				<HuePicker
-					width="300"
-					{ ...props.choices }
-					color={ props.value }
-					onChangeComplete={ handleChangeCompleteHuePicker }
-				/>
-			</div>
 			<WCAGTextColorIndicator { ...props } />
 			<div style={ styles.pickerWrapper }>
 				<CompactPicker

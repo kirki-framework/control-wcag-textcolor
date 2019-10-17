@@ -2,7 +2,7 @@
 /**
  * Override field methods
  *
- * @package   kirki-wcag-lc
+ * @package   kirki-wcag-tc
  * @copyright Copyright (c) 2019, Ari Stathopoulos (@aristath)
  * @license   GPL2.0+
  * @since     1.0
@@ -26,7 +26,7 @@ class WCAGTextColor extends Field {
 	 * @since 1.0
 	 * @var string
 	 */
-	public $type = 'kirki-wcag-lc';
+	public $type = 'kirki-wcag-tc';
 
 	/**
 	 * The control class-name.
@@ -84,7 +84,7 @@ class WCAGTextColor extends Field {
 	public function filter_control_args( $args, $wp_customize ) {
 		if ( $args['settings'] === $this->args['settings'] ) {
 			$args         = parent::filter_control_args( $args, $wp_customize );
-			$args['type'] = 'kirki-wcag-lc';
+			$args['type'] = 'kirki-wcag-tc';
 		}
 		return $args;
 	}

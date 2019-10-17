@@ -8,22 +8,15 @@ const WCAGTextColorIndicator = ( props ) => {
 		return Math.round( Color( props.value ).getDistanceLuminosityFrom( Color( props.backgroundColor ) ) * 100 ) / 100;
 	};
 
-	// Get WCAG contrast with surrounding text.
-	const getContrastSurroundingText = () => {
-		return Math.round( Color( props.value ).getDistanceLuminosityFrom( Color( props.textColor ) ) * 100 ) / 100;
-	};
-
 	// Get rating.
 	const getRating = () => {
-		const underlined = props.control.params.choices.linksUnderlined;
 		const contrastBg = getContrastBackground();
-		const contrastSt = getContrastSurroundingText();
 
-		if ( 7 <= contrastBg && ( underlined || 3 <= contrastSt ) ) {
+		if ( 7 <= contrastBg ) {
 			return 'AAA';
-		} else if ( 4.5 <= contrastBg && ( underlined || 3 <= contrastSt ) ) {
+		} else if ( 4.5 <= contrastBg ) {
 			return 'AA';
-		} else if ( 3 <= contrastBg && ( underlined || 3 <= contrastSt ) ) {
+		} else if ( 3 <= contrastBg ) {
 			return 'A';
 		}
 		return '-';
@@ -111,10 +104,6 @@ const WCAGTextColorIndicator = ( props ) => {
 				<tr>
 					<td style={ styles.td }>{ props.i18n.contrastBg }</td>
 					<td style={ styles.td }>{ getContrastBackground() }</td>
-				</tr>
-				<tr>
-					<td style={ styles.td }>{ props.i18n.contrastSt }</td>
-					<td style={ styles.td }>{ getContrastSurroundingText() }</td>
 				</tr>
 			</table>
 		</div>

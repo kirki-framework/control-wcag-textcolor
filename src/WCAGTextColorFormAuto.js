@@ -7,7 +7,7 @@ import WCAGTextColorIndicator from './WCAGTextColorIndicator';
 const WCAGTextColorFormAuto = ( props ) => {
 	// Handle changes to the hue picker.
 	const handleChangeComplete = ( color ) => {
-		const val = props.control.getAutoColor( parseInt( color.hsl.h, 10 ) );
+		const val = props.control.getAutoColor();
 		wp.customize( props.customizerSetting.id ).set( val );
 	};
 
@@ -21,19 +21,7 @@ const WCAGTextColorFormAuto = ( props ) => {
 		}
 	} );
 
-	return (
-		<div>
-			<div style={ styles.hueWrapper }>
-				<HuePicker
-					width="300"
-					{ ...props.choices }
-					color={ props.value }
-					onChangeComplete={ handleChangeComplete }
-				/>
-			</div>
-			<WCAGTextColorIndicator { ...props } />
-		</div>
-	);
+	return <WCAGTextColorIndicator { ...props } />;
 };
 
 export default WCAGTextColorFormAuto;
