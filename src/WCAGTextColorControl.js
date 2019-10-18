@@ -142,15 +142,25 @@ const WCAGTextColorControl = wp.customize.Control.extend( {
 				// Reset any already-calculated colors.
 				control.backgroundColor = false;
 				control.recommendedColors = false;
-				// If auto or recommended mode, change the active color.
-				if ( 'auto' === control.getMode() || 'recommended' === control.getMode() ) {
+
+				if ( 'recommended' === control.getMode() || 'auto' === control.getMode() ) {
+					if ( 'recommended' === getMode() ) {
+						control.setRecommendedColorsFlat();
+					}
+
 					const val = control.getAutoColor();
+					const noChange = val === control.setting.get();
+
 					control.setting.set( val );
+
+					if ( noChange ) {
+						control.renderContent();
+					}
 				} else {
 					control.renderContent();
 				}
 			}, 100 ) );
-		} );
+	} );
 
 		if ( -1 < settingToWatch.indexOf( '[' ) ) {
 			wp.customize( settingToWatch.split( '[' )[ 0 ], function( setting ) {
@@ -158,10 +168,20 @@ const WCAGTextColorControl = wp.customize.Control.extend( {
 					// Reset any already-calculated colors.
 					control.backgroundColor = false;
 					control.recommendedColors = false;
-					// If auto or recommended mode, change the active color.
-					if ( 'auto' === control.getMode() || 'recommended' === control.getMode() ) {
+
+					if ( 'recommended' === control.getMode() || 'auto' === control.getMode() ) {
+						if ( 'recommended' === getMode() ) {
+							control.setRecommendedColorsFlat();
+						}
+
 						const val = control.getAutoColor();
+						const noChange = val === control.setting.get();
+
 						control.setting.set( val );
+
+						if ( noChange ) {
+							control.renderContent();
+						}
 					} else {
 						control.renderContent();
 					}
@@ -240,19 +260,27 @@ const WCAGTextColorControl = wp.customize.Control.extend( {
 		const control = this;
 		const backgroundColor = Color( control.getBackgroundColor() );
 		const isDarkBackground = '#000000' !== backgroundColor.getMaxContrastColor().toCSS();
-		let lightnessSteps = ( isDarkBackground ) ? [ 80, 78, 77, 76, 75, 73, 71, 68, 65, 61, 57 ] : [ 20, 22, 23, 24, 25, 27, 29, 32, 35, 39, 43 ];
-		if ( control.params.choices.lightnessSteps ) {
-			lightnessSteps = ( isDarkBackground ) ? control.params.choices.lightnessSteps[ 1 ] : control.params.choices.lightnessSteps[ 0 ];
-		}
-		const saturationSteps = ( control.params.choices.saturationSteps ) ? ( control.params.choices.lightnessSteps ) : [ 40, 45, 50, 55, 60, 65, 67.5, 70, 72.5, 75, 77.5, 80, 82.5, 85, 87.5, 90, 92.5, 95, 97.5, 100 ];
+
+		const minLightness = isDarkBackground ? 50 : 0;
+		const maxLightness = isDarkBackground ? 100 : 50;
+		const stepLightness = 10;
+
+		const minSaturation = 0;
+		const maxSaturation = 5;
+		const stepSaturation = 5;
+
+		const stepHue = 30;
 
 		control.recommendedColors = [];
 
-		for ( let hue = 0; hue <= 359; hue += 15 ) {
+		for ( let hue = 0; hue <= 360; hue += stepHue ) {
 
-			for ( let saturation = 0; saturation <= 15; saturation += 15 ) {
+			for ( let saturation = minSaturation; saturation <= maxSaturation; saturation += stepSaturation ) {
 
-				for ( let lightness = 0; lightness <= 100; lightness += 12.5 ) {
+				// Double the resulution for black/white.
+				let stepL = 0 === saturation ? stepLightness / 2 : stepLightness;
+
+				for ( let lightness = minLightness; lightness <= maxLightness; lightness += stepL ) {
 
 					const item = {
 						color: Color( {
@@ -260,7 +288,7 @@ const WCAGTextColorControl = wp.customize.Control.extend( {
 							s: saturation,
 							l: lightness
 						} )
-					};
+					}; 
 					item.contrastBackground = item.color.getDistanceLuminosityFrom( backgroundColor );
 
 					// Check if the color is already in our array.
@@ -287,7 +315,7 @@ const WCAGTextColorControl = wp.customize.Control.extend( {
 		}
 
 		control.recommendedColors.sort( function( a, b ) {
-			return a.contrastBackground - b.contrastBackground;
+			return b.contrastBackground - a.contrastBackground;
 		} );
 
 		return control.recommendedColors;
@@ -296,19 +324,18 @@ const WCAGTextColorControl = wp.customize.Control.extend( {
 	/**
 	 * Get a flat array of all recommended colors.
 	 *
-	 * @param {undefined|number} hue undefined for defaults or a number to force a hue.
 	 * @param {boolean} forceRecalc - When set to true it force-regenerates colors.
 	 * @return {Array} - Return an array of strings [ '#hex1', '#hex2' ].
 	 */
-	getRecommendedColorsFlat( hue, forceRecalc ) {
+	getRecommendedColorsFlat( forceRecalc ) {
 		if ( forceRecalc || ! this.recommendedColorsFlat ) {
-			this.setRecommendedColorsFlat( hue );
+			this.setRecommendedColorsFlat();
 		}
 		return this.recommendedColorsFlat;
 	},
 
-	setRecommendedColorsFlat( hue ) {
-		const allColors = this.getRecommendedColors( hue );
+	setRecommendedColorsFlat() {
+		const allColors = this.getRecommendedColors();
 		this.recommendedColorsFlat = [];
 		for ( let i = 0; i < allColors.length; i++ ) {
 			this.recommendedColorsFlat.push( allColors[ i ].color.toCSS() );
@@ -317,6 +344,15 @@ const WCAGTextColorControl = wp.customize.Control.extend( {
 
 	setMode( mode ) {
 		this.forcedMode = mode;
+
+		if ( 'recommended' === mode ) {
+			this.setRecommendedColorsFlat();
+		}
+
+		if ( 'auto' === mode || 'recommended' === mode ) {
+			this.setting.set( this.getAutoColor() );
+		}
+
 		this.renderContent();
 	},
 

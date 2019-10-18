@@ -5,11 +5,6 @@ import reactCSS from 'reactcss';
 import WCAGTextColorIndicator from './WCAGTextColorIndicator';
 
 const WCAGTextColorFormRecommended = ( props ) => {
-	// Handle changes to the hue picker.
-	const handleChangeCompleteHuePicker = ( color ) => {
-		const val = props.control.getAutoColor();
-		wp.customize( props.customizerSetting.id ).set( val );
-	};
 
 	// Handle changes to the recommended picker.
 	const handleChangeComplete = ( color ) => {
