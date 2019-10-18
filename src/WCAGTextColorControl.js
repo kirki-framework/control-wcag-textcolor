@@ -144,7 +144,7 @@ const WCAGTextColorControl = wp.customize.Control.extend( {
 				control.recommendedColors = false;
 
 				if ( 'recommended' === control.getMode() || 'auto' === control.getMode() ) {
-					if ( 'recommended' === getMode() ) {
+					if ( 'recommended' === control.getMode() ) {
 						control.setRecommendedColorsFlat();
 					}
 
@@ -170,7 +170,7 @@ const WCAGTextColorControl = wp.customize.Control.extend( {
 					control.recommendedColors = false;
 
 					if ( 'recommended' === control.getMode() || 'auto' === control.getMode() ) {
-						if ( 'recommended' === getMode() ) {
+						if ( 'recommended' === control.getMode() ) {
 							control.setRecommendedColorsFlat();
 						}
 
