@@ -160,7 +160,7 @@ const WCAGTextColorControl = wp.customize.Control.extend( {
 					control.renderContent();
 				}
 			}, 100 ) );
-	} );
+		} );
 
 		if ( -1 < settingToWatch.indexOf( '[' ) ) {
 			wp.customize( settingToWatch.split( '[' )[ 0 ], function( setting ) {
