@@ -97,16 +97,16 @@ const WCAGTextColorIndicator = ( props ) => {
 				<p style={ styles.selectedColorIndicatorText }>{ props.value }</p>
 			</div>
 			<table style={ styles.table }>
-        <tbody>
-          <tr>
-            <td style={ styles.td }>{ props.i18n.a11yRating }</td>
-            <td style={ styles.td }><span style={ styles.ratingIndicator }>{ getRating() }</span></td>
-          </tr>
-          <tr>
-            <td style={ styles.td }>{ props.i18n.contrastBg }</td>
-            <td style={ styles.td }>{ getContrastBackground() }</td>
-          </tr>
-        </tbody>
+				<tbody>
+					<tr>
+						<td style={ styles.td }>{ props.i18n.a11yRating }</td>
+						<td style={ styles.td }><span style={ styles.ratingIndicator }>{ getRating() }</span></td>
+					</tr>
+					<tr>
+						<td style={ styles.td }>{ props.i18n.contrastBg }</td>
+						<td style={ styles.td }>{ getContrastBackground() }</td>
+					</tr>
+				</tbody>
 			</table>
 		</div>
 	);
