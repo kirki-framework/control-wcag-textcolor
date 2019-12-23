@@ -15,9 +15,9 @@ const WCAGTextColorFormRecommended = ( props ) => {
 	const styles = reactCSS( {
 		default: {
 			pickerWrapper: {
-				'max-height': '200px',
-				'overflow-x': 'hidden',
-				'overflow-y': 'auto'
+        maxHeight: '200px',
+        overflowX: 'hidden',
+        overflowY: 'auto'
 			}
 		}
 	} );
