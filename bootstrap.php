@@ -21,26 +21,24 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 add_filter(
-    'kirki_control_types',
-
-    /**
+	'kirki_control_types',
+	/**
 	 * Registers the control with Kirki.
 	 *
 	 * @since 1.0
 	 * @param array $controls An array of controls registered with the Kirki Framework.
 	 * @return array
 	 */
-    function( $controls ) {
-        require_once __DIR__ . '/src/Control/WCAGTextColor.php';
+	function( $controls ) {
+		require_once __DIR__ . '/src/Control/WCAGTextColor.php';
 		$controls['kirki-wcag-tc'] = '\WPLemon\Control\WCAGTextColor';
 		return $controls;
-    }
+	}
 );
 
 add_action(
-    'customize_register',
-
-    /**
+	'customize_register',
+	/**
 	 * Registers the control type and make it eligible for
 	 * JS templating in the Customizer.
 	 *
@@ -49,13 +47,13 @@ add_action(
 	 * @return void
 	 */
 	function( $wp_customize ) {
-        require_once __DIR__ . '/src/Control/WCAGTextColor.php';
-        $wp_customize->register_control_type( '\WPLemon\Control\WCAGTextColor' );
+		require_once __DIR__ . '/src/Control/WCAGTextColor.php';
+		$wp_customize->register_control_type( '\WPLemon\Control\WCAGTextColor' );
 
-        // Add class aliases for backwards compatibility.
-        class_alias( '\WPLemon\Control\WCAGTextColor', 'Kirki_WCAG_Text_Color' );
-    },
-    0
+		// Add class aliases for backwards compatibility.
+		class_alias( '\WPLemon\Control\WCAGTextColor', 'Kirki_WCAG_Text_Color' );
+	},
+	0
 );
 
 /**
@@ -64,17 +62,19 @@ add_action(
  * @since 2.0
  */
 spl_autoload_register(
-    /**
-     * Autoload the class.
-     *
-     * @param string $class The class-name.
-     */
+	/**
+	 * Autoload the class.
+	 *
+	 * @param string $class The class-name.
+	 */
 	function( $class ) {
-        if ( 'WPLemon\Field\WCAGTextColor' === $class || '\WPLemon\Field\WCAGTextColor' === $class ) {
-            require_once __DIR__ . '/src/Field/WCAGTextColor.php';
-        }
-        if ( 'WPLemon\Control\WCAGTextColor' === $class || '\WPLemon\Control\WCAGTextColor' === $class ) {
-            require_once __DIR__ . '/src/Control/WCAGTextColor.php';
-        }
-	}, false, true
+		if ( 'WPLemon\Field\WCAGTextColor' === $class || '\WPLemon\Field\WCAGTextColor' === $class ) {
+			require_once __DIR__ . '/src/Field/WCAGTextColor.php';
+		}
+		if ( 'WPLemon\Control\WCAGTextColor' === $class || '\WPLemon\Control\WCAGTextColor' === $class ) {
+			require_once __DIR__ . '/src/Control/WCAGTextColor.php';
+		}
+	},
+	false,
+	true
 );
